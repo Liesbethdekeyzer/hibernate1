@@ -1,4 +1,4 @@
-package com.example.hibernate.demo.onetoone;
+package com.example.hibernate.demo.onetoon.bi;
 
 import com.example.hibernate.entity.Instructor;
 import com.example.hibernate.entity.InstructorDetail;
@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class OneToOneDemo {
+public class OneToOnBiDemo {
 
     public static void main(String[] args) {
         //get session factory
