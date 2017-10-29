@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
 @Table(name = "instructor_detail")
 @Data
 @ToString
+@NoArgsConstructor
 public class InstructorDetail {
 
 /*    annotate the class as an enity and map to db table

@@ -1,5 +1,6 @@
-package com.example.hibernate.demo.onetoon.bi;
+package com.example.hibernate.demo.onetomany;
 
+import com.example.hibernate.entity.Course;
 import com.example.hibernate.entity.Instructor;
 import com.example.hibernate.entity.InstructorDetail;
 
@@ -7,33 +8,35 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
-public class OneToOnBiDemo {
-
+public class oneToManyReadDemo {
     public static void main(String[] args) {
         //get session factory
 
         SessionFactory sessionFactory =
-            new Configuration().configure("hibernate3.cfg.xml")
+            new Configuration().configure("hibernate4.cfg.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
+                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
         Session session = sessionFactory.getCurrentSession();
         try {
-            //create objects
-            Instructor instructor = new Instructor("Liesbeth", "de Keyzer", "Liesbeth@gmail.com");
-            InstructorDetail instructorDetail = new InstructorDetail("someChannel", "love 2 code");
-
-            //associate the objects
-            instructor.setInstructorDetail(instructorDetail);
-
-            //start transaction
             session.beginTransaction();
-            session.save(instructor); //this wil also sanve the details >> cascadetype All
+
+            int instructorId = 1; //valid id
+
+            Instructor instructor = session.get(Instructor.class, instructorId);
+            System.out.println(instructor);
+            System.out.println("getCourses");
+            System.out.println(instructor.getCourses());
+
+
+
             session.getTransaction().commit();
 
-            //comit
+
+        } catch (Exception e) {
+            e.printStackTrace();
 
         } finally {
             sessionFactory.close();

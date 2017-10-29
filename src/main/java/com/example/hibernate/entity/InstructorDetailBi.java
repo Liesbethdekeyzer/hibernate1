@@ -35,7 +35,12 @@ public class InstructorDetailBi {
 
     //add new field for instructor
     // add @oneToOne annotation mappedBy is the field will ref to the instructorDetailBi in instructorBi
-    @OneToOne(mappedBy = "instructorDetailBi", cascade = CascadeType.ALL)
+    //@OneToOne(mappedBy = "instructorDetailBi", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetailBi",
+        cascade = {CascadeType.DETACH,
+                   CascadeType.MERGE,
+                   CascadeType.PERSIST,
+                   CascadeType.REFRESH})
     private InstructorBi instructorBi;
 
     public InstructorDetailBi(String youtubeCannel, String hobby, InstructorBi instructorBi) {
@@ -43,7 +48,7 @@ public class InstructorDetailBi {
         this.hobby = hobby;
     }
 
-    public InstructorDetailBi(){
+    public InstructorDetailBi() {
     }
 
     @Override
